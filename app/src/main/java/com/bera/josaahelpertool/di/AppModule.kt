@@ -9,6 +9,7 @@ import com.bera.josaahelpertool.network.okhttp.CacheInterceptor
 import com.bera.josaahelpertool.network.okhttp.ForceCacheInterceptor
 import com.bera.josaahelpertool.repository.CutoffRepository
 import com.bera.josaahelpertool.repository.UniversityImageRepository
+import com.bera.josaahelpertool.ui.theme.ThemeDataStore
 import com.bera.josaahelpertool.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -80,4 +81,9 @@ object AppModule {
     @Singleton
     @Provides
     fun provideContext(@ApplicationContext appContext: Context): Context = appContext
+
+    @Singleton
+    @Provides
+    fun provideThemeDataStore(@ApplicationContext appContext: Context): ThemeDataStore =
+        ThemeDataStore(appContext)
 }

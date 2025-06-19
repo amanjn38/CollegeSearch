@@ -19,6 +19,7 @@ import com.bera.josaahelpertool.screens.home.HomeScreen
 import com.bera.josaahelpertool.screens.home.HomeViewModel
 import com.bera.josaahelpertool.screens.search.SearchScreen
 import com.bera.josaahelpertool.screens.search.SearchViewModel
+import com.bera.josaahelpertool.ui.theme.ThemeViewModel
 
 @Composable
 fun Navigation() {
@@ -28,7 +29,8 @@ fun Navigation() {
     ) {
         composable(Routes.HomeScreen.route) {
             val homeViewModel = hiltViewModel<HomeViewModel>()
-            HomeScreen(navController = navController, viewModel = homeViewModel)
+            val themeViewModel = hiltViewModel<ThemeViewModel>()
+            HomeScreen(navController = navController, viewModel = homeViewModel, themeViewModel = themeViewModel)
         }
         composable(Routes.CollegeScreen.route + "/{category}", listOf(navArgument("category") {
             type = NavType.StringType

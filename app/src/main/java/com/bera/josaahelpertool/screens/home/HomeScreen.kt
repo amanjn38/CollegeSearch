@@ -65,8 +65,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.bera.josaahelpertool.components.ThemeSwitcher
 import com.bera.josaahelpertool.models.ui.TopHalfItem
 import com.bera.josaahelpertool.navigation.Routes
+import com.bera.josaahelpertool.ui.theme.ThemeViewModel
 import com.bera.josaahelpertool.ui.theme.rubikFamily
 import com.bera.josaahelpertool.utils.CustomDivider
 import com.bera.josaahelpertool.utils.ShimmerListItem
@@ -79,7 +81,8 @@ import kotlin.reflect.KSuspendFunction2
 @Composable
 fun HomeScreen(
     navController: NavController,
-    viewModel: HomeViewModel
+    viewModel: HomeViewModel,
+    themeViewModel: ThemeViewModel
 ) {
 
 
@@ -106,6 +109,26 @@ fun HomeScreen(
                     color = MaterialTheme.colorScheme.primary,
                     textAlign = TextAlign.Center
                 )
+            }
+            item {
+                Spacer(modifier = Modifier.height(12.dp))
+            }
+            item {
+                // Theme Switcher
+                val isDarkTheme = themeViewModel.shouldUseDarkTheme()
+                
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    ThemeSwitcher(
+                        darkTheme = isDarkTheme,
+                        size = 30.dp,
+                        onClick = { themeViewModel.toggleTheme() }
+                    )
+                }
             }
             item {
                 Spacer(modifier = Modifier.height(12.dp))
